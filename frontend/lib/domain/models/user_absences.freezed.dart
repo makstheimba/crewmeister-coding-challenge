@@ -29,8 +29,8 @@ mixin _$UserAbsence {
   DateTime get endDate => throw _privateConstructorUsedError;
   @JsonKey(fromJson: DateTime.parse)
   DateTime get startDate => throw _privateConstructorUsedError;
-  @JsonKey(fromJson: UserAbscenceTypeExtension.fromString)
-  UserAbscenceType get type => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: UserAbsenceTypeExtension.fromString)
+  UserAbsenceType get type => throw _privateConstructorUsedError;
   String get memberNote => throw _privateConstructorUsedError;
   String get admitterNote => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _dateFromJson)
@@ -57,8 +57,8 @@ abstract class $UserAbsenceCopyWith<$Res> {
       @JsonKey(fromJson: DateTime.parse) DateTime createdAt,
       @JsonKey(fromJson: DateTime.parse) DateTime endDate,
       @JsonKey(fromJson: DateTime.parse) DateTime startDate,
-      @JsonKey(fromJson: UserAbscenceTypeExtension.fromString)
-      UserAbscenceType type,
+      @JsonKey(fromJson: UserAbsenceTypeExtension.fromString)
+      UserAbsenceType type,
       String memberNote,
       String admitterNote,
       @JsonKey(fromJson: _dateFromJson) DateTime? confirmedAt,
@@ -120,7 +120,7 @@ class _$UserAbsenceCopyWithImpl<$Res, $Val extends UserAbsence>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as UserAbscenceType,
+              as UserAbsenceType,
       memberNote: null == memberNote
           ? _value.memberNote
           : memberNote // ignore: cast_nullable_to_non_nullable
@@ -160,8 +160,8 @@ abstract class _$$UserAbscenceImplCopyWith<$Res>
       @JsonKey(fromJson: DateTime.parse) DateTime createdAt,
       @JsonKey(fromJson: DateTime.parse) DateTime endDate,
       @JsonKey(fromJson: DateTime.parse) DateTime startDate,
-      @JsonKey(fromJson: UserAbscenceTypeExtension.fromString)
-      UserAbscenceType type,
+      @JsonKey(fromJson: UserAbsenceTypeExtension.fromString)
+      UserAbsenceType type,
       String memberNote,
       String admitterNote,
       @JsonKey(fromJson: _dateFromJson) DateTime? confirmedAt,
@@ -221,7 +221,7 @@ class __$$UserAbscenceImplCopyWithImpl<$Res>
       type: null == type
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
-              as UserAbscenceType,
+              as UserAbsenceType,
       memberNote: null == memberNote
           ? _value.memberNote
           : memberNote // ignore: cast_nullable_to_non_nullable
@@ -256,7 +256,7 @@ class _$UserAbscenceImpl implements _UserAbscence {
       @JsonKey(fromJson: DateTime.parse) required this.createdAt,
       @JsonKey(fromJson: DateTime.parse) required this.endDate,
       @JsonKey(fromJson: DateTime.parse) required this.startDate,
-      @JsonKey(fromJson: UserAbscenceTypeExtension.fromString)
+      @JsonKey(fromJson: UserAbsenceTypeExtension.fromString)
       required this.type,
       this.memberNote = '',
       this.admitterNote = '',
@@ -283,8 +283,8 @@ class _$UserAbscenceImpl implements _UserAbscence {
   @JsonKey(fromJson: DateTime.parse)
   final DateTime startDate;
   @override
-  @JsonKey(fromJson: UserAbscenceTypeExtension.fromString)
-  final UserAbscenceType type;
+  @JsonKey(fromJson: UserAbsenceTypeExtension.fromString)
+  final UserAbsenceType type;
   @override
   @JsonKey()
   final String memberNote;
@@ -369,8 +369,8 @@ abstract class _UserAbscence implements UserAbsence {
       @JsonKey(fromJson: DateTime.parse) required final DateTime createdAt,
       @JsonKey(fromJson: DateTime.parse) required final DateTime endDate,
       @JsonKey(fromJson: DateTime.parse) required final DateTime startDate,
-      @JsonKey(fromJson: UserAbscenceTypeExtension.fromString)
-      required final UserAbscenceType type,
+      @JsonKey(fromJson: UserAbsenceTypeExtension.fromString)
+      required final UserAbsenceType type,
       final String memberNote,
       final String admitterNote,
       @JsonKey(fromJson: _dateFromJson) final DateTime? confirmedAt,
@@ -396,8 +396,8 @@ abstract class _UserAbscence implements UserAbsence {
   @JsonKey(fromJson: DateTime.parse)
   DateTime get startDate;
   @override
-  @JsonKey(fromJson: UserAbscenceTypeExtension.fromString)
-  UserAbscenceType get type;
+  @JsonKey(fromJson: UserAbsenceTypeExtension.fromString)
+  UserAbsenceType get type;
   @override
   String get memberNote;
   @override

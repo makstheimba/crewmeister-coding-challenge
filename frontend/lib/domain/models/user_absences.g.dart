@@ -14,7 +14,7 @@ _$UserAbscenceImpl _$$UserAbscenceImplFromJson(Map<String, dynamic> json) =>
       createdAt: DateTime.parse(json['createdAt'] as String),
       endDate: DateTime.parse(json['endDate'] as String),
       startDate: DateTime.parse(json['startDate'] as String),
-      type: UserAbscenceTypeExtension.fromString(json['type'] as String),
+      type: UserAbsenceTypeExtension.fromString(json['type'] as String),
       memberNote: json['memberNote'] as String? ?? '',
       admitterNote: json['admitterNote'] as String? ?? '',
       confirmedAt: _dateFromJson(json['confirmedAt'] as String?),
@@ -30,7 +30,7 @@ Map<String, dynamic> _$$UserAbscenceImplToJson(_$UserAbscenceImpl instance) =>
       'createdAt': instance.createdAt.toIso8601String(),
       'endDate': instance.endDate.toIso8601String(),
       'startDate': instance.startDate.toIso8601String(),
-      'type': _$UserAbscenceTypeEnumMap[instance.type]!,
+      'type': _$UserAbsenceTypeEnumMap[instance.type]!,
       'memberNote': instance.memberNote,
       'admitterNote': instance.admitterNote,
       'confirmedAt': instance.confirmedAt?.toIso8601String(),
@@ -38,7 +38,7 @@ Map<String, dynamic> _$$UserAbscenceImplToJson(_$UserAbscenceImpl instance) =>
       'admitterId': instance.admitterId,
     };
 
-const _$UserAbscenceTypeEnumMap = {
-  UserAbscenceType.sickness: 'sickness',
-  UserAbscenceType.vacation: 'vacation',
+const _$UserAbsenceTypeEnumMap = {
+  UserAbsenceType.sickness: 'sickness',
+  UserAbsenceType.vacation: 'vacation',
 };
