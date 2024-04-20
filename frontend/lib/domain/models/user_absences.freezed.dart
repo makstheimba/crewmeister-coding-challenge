@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'user_abscences.dart';
+part of 'user_absences.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -14,12 +14,12 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
-UserAbscence _$UserAbscenceFromJson(Map<String, dynamic> json) {
+UserAbsence _$UserAbsenceFromJson(Map<String, dynamic> json) {
   return _UserAbscence.fromJson(json);
 }
 
 /// @nodoc
-mixin _$UserAbscence {
+mixin _$UserAbsence {
   int get crewId => throw _privateConstructorUsedError;
   int get id => throw _privateConstructorUsedError;
   int get userId => throw _privateConstructorUsedError;
@@ -40,15 +40,15 @@ mixin _$UserAbscence {
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $UserAbscenceCopyWith<UserAbscence> get copyWith =>
+  $UserAbsenceCopyWith<UserAbsence> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $UserAbscenceCopyWith<$Res> {
-  factory $UserAbscenceCopyWith(
-          UserAbscence value, $Res Function(UserAbscence) then) =
-      _$UserAbscenceCopyWithImpl<$Res, UserAbscence>;
+abstract class $UserAbsenceCopyWith<$Res> {
+  factory $UserAbsenceCopyWith(
+          UserAbsence value, $Res Function(UserAbsence) then) =
+      _$UserAbsenceCopyWithImpl<$Res, UserAbsence>;
   @useResult
   $Res call(
       {int crewId,
@@ -67,9 +67,9 @@ abstract class $UserAbscenceCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$UserAbscenceCopyWithImpl<$Res, $Val extends UserAbscence>
-    implements $UserAbscenceCopyWith<$Res> {
-  _$UserAbscenceCopyWithImpl(this._value, this._then);
+class _$UserAbsenceCopyWithImpl<$Res, $Val extends UserAbsence>
+    implements $UserAbsenceCopyWith<$Res> {
+  _$UserAbsenceCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -147,7 +147,7 @@ class _$UserAbscenceCopyWithImpl<$Res, $Val extends UserAbscence>
 
 /// @nodoc
 abstract class _$$UserAbscenceImplCopyWith<$Res>
-    implements $UserAbscenceCopyWith<$Res> {
+    implements $UserAbsenceCopyWith<$Res> {
   factory _$$UserAbscenceImplCopyWith(
           _$UserAbscenceImpl value, $Res Function(_$UserAbscenceImpl) then) =
       __$$UserAbscenceImplCopyWithImpl<$Res>;
@@ -171,7 +171,7 @@ abstract class _$$UserAbscenceImplCopyWith<$Res>
 
 /// @nodoc
 class __$$UserAbscenceImplCopyWithImpl<$Res>
-    extends _$UserAbscenceCopyWithImpl<$Res, _$UserAbscenceImpl>
+    extends _$UserAbsenceCopyWithImpl<$Res, _$UserAbscenceImpl>
     implements _$$UserAbscenceImplCopyWith<$Res> {
   __$$UserAbscenceImplCopyWithImpl(
       _$UserAbscenceImpl _value, $Res Function(_$UserAbscenceImpl) _then)
@@ -301,7 +301,7 @@ class _$UserAbscenceImpl implements _UserAbscence {
 
   @override
   String toString() {
-    return 'UserAbscence(crewId: $crewId, id: $id, userId: $userId, createdAt: $createdAt, endDate: $endDate, startDate: $startDate, type: $type, memberNote: $memberNote, admitterNote: $admitterNote, confirmedAt: $confirmedAt, rejectedAt: $rejectedAt, admitterId: $admitterId)';
+    return 'UserAbsence(crewId: $crewId, id: $id, userId: $userId, createdAt: $createdAt, endDate: $endDate, startDate: $startDate, type: $type, memberNote: $memberNote, admitterNote: $admitterNote, confirmedAt: $confirmedAt, rejectedAt: $rejectedAt, admitterId: $admitterId)';
   }
 
   @override
@@ -361,7 +361,7 @@ class _$UserAbscenceImpl implements _UserAbscence {
   }
 }
 
-abstract class _UserAbscence implements UserAbscence {
+abstract class _UserAbscence implements UserAbsence {
   const factory _UserAbscence(
       {required final int crewId,
       required final int id,

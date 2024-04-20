@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part 'user_abscences.freezed.dart';
-part 'user_abscences.g.dart';
+part 'user_absences.freezed.dart';
+part 'user_absences.g.dart';
 
 enum UserAbscenceType { sickness, vacation }
 
@@ -21,8 +21,8 @@ extension UserAbscenceTypeExtension on UserAbscenceType {
 DateTime? _dateFromJson(String? date) => date != null ? DateTime.parse(date) : null;
 
 @freezed
-class UserAbscence with _$UserAbscence {
-  const factory UserAbscence({
+class UserAbsence with _$UserAbsence {
+  const factory UserAbsence({
     required int crewId,
     required int id,
     required int userId,
@@ -37,5 +37,5 @@ class UserAbscence with _$UserAbscence {
     int? admitterId,
   }) = _UserAbscence;
 
-  factory UserAbscence.fromJson(Map<String, dynamic> json) => _$UserAbscenceFromJson(json);
+  factory UserAbsence.fromJson(Map<String, dynamic> json) => _$UserAbsenceFromJson(json);
 }

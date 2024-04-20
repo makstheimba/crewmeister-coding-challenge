@@ -10,5 +10,5 @@ class ApiResponse<T> {
       _$ApiResponseFromJson(json, fromJsonT);
 
   String message;
-  List<T> payload;
+  T payload;
 }

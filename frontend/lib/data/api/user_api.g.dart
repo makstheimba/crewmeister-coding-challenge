@@ -56,11 +56,11 @@ class _UserApi implements UserApi {
   }
 
   @override
-  Future<ApiResponse<List<UserAbscence>>> getAbsences(
-    int page,
+  Future<ApiResponse<List<UserAbsence>>> getAbsences({
+    int? page,
     String? type,
     String? date,
-  ) async {
+  }) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'page': page,
@@ -71,7 +71,7 @@ class _UserApi implements UserApi {
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiResponse<List<UserAbscence>>>(Options(
+        _setStreamType<ApiResponse<List<UserAbsence>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -87,12 +87,12 @@ class _UserApi implements UserApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ApiResponse<List<UserAbscence>>.fromJson(
+    final value = ApiResponse<List<UserAbsence>>.fromJson(
       _result.data!,
       (json) => json is List<dynamic>
           ? json
-              .map<UserAbscence>(
-                  (i) => UserAbscence.fromJson(i as Map<String, dynamic>))
+              .map<UserAbsence>(
+                  (i) => UserAbsence.fromJson(i as Map<String, dynamic>))
               .toList()
           : List.empty(),
     );
