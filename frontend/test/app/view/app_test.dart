@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:frontend/presentation/app/view/app.dart';
-import 'package:frontend/presentation/counter/counter.dart';
+import 'package:frontend/presentation/counter/view/counter_page.dart';
 
 void main() {
   group('App', () {

@@ -1,7 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:frontend/data/api/api_response.dart';
 import 'package:frontend/domain/models/user.dart';
-import 'package:frontend/domain/models/user_absences.dart';
 import 'package:retrofit/retrofit.dart';
 
 part 'user_api.g.dart';
@@ -12,11 +11,4 @@ abstract class UserApi {
 
   @GET('/users')
   Future<ApiResponse<List<UserModel>>> getUsers();
-
-  @GET('/absences')
-  Future<ApiResponse<List<UserAbsence>>> getAbsences({
-    @Query('page') int? page,
-    @Query('type') String? type,
-    @Query('date') String? date,
-  });
 }

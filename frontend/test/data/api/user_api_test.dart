@@ -3,20 +3,23 @@ import 'dart:io';
 
 import 'package:dio/dio.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:frontend/data/api/absences_api.dart';
 import 'package:frontend/data/api/user_api.dart';
+import 'package:frontend/domain/models/absences.dart';
 import 'package:frontend/domain/models/user.dart';
-import 'package:frontend/domain/models/user_absences.dart';
 import 'package:http_mock_adapter/http_mock_adapter.dart';
 
 void main() {
   late Dio dio;
   late DioAdapter dioAdapter;
   late UserApi userApi;
+  late AbsencesApi absencesApi;
 
   setUp(() {
     dio = Dio();
     dioAdapter = DioAdapter(dio: dio, matcher: const UrlRequestMatcher());
     userApi = UserApi(dio);
+    absencesApi = AbsencesApi(dio);
 
     dio.httpClientAdapter = dioAdapter;
   });
@@ -46,8 +49,8 @@ void main() {
       headers: {'Content-Type': 'application/json'},
     );
 
-    final response = await userApi.getAbsences();
+    final response = await absencesApi.getAbsences();
 
-    expect(response.payload, isA<List<UserAbsence>>());
+    expect(response.payload, isA<List<Absence>>());
   });
 }
