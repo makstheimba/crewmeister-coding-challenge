@@ -407,3 +407,164 @@ abstract class _Absence implements Absence {
   _$$AbsenceImplCopyWith<_$AbsenceImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
+
+Absences _$AbsencesFromJson(Map<String, dynamic> json) {
+  return _Absences.fromJson(json);
+}
+
+/// @nodoc
+mixin _$Absences {
+  List<Absence> get list => throw _privateConstructorUsedError;
+  int get total => throw _privateConstructorUsedError;
+
+  Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+  @JsonKey(ignore: true)
+  $AbsencesCopyWith<Absences> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $AbsencesCopyWith<$Res> {
+  factory $AbsencesCopyWith(Absences value, $Res Function(Absences) then) =
+      _$AbsencesCopyWithImpl<$Res, Absences>;
+  @useResult
+  $Res call({List<Absence> list, int total});
+}
+
+/// @nodoc
+class _$AbsencesCopyWithImpl<$Res, $Val extends Absences>
+    implements $AbsencesCopyWith<$Res> {
+  _$AbsencesCopyWithImpl(this._value, this._then);
+
+  // ignore: unused_field
+  final $Val _value;
+  // ignore: unused_field
+  final $Res Function($Val) _then;
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? list = null,
+    Object? total = null,
+  }) {
+    return _then(_value.copyWith(
+      list: null == list
+          ? _value.list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<Absence>,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+    ) as $Val);
+  }
+}
+
+/// @nodoc
+abstract class _$$AbsencesImplCopyWith<$Res>
+    implements $AbsencesCopyWith<$Res> {
+  factory _$$AbsencesImplCopyWith(
+          _$AbsencesImpl value, $Res Function(_$AbsencesImpl) then) =
+      __$$AbsencesImplCopyWithImpl<$Res>;
+  @override
+  @useResult
+  $Res call({List<Absence> list, int total});
+}
+
+/// @nodoc
+class __$$AbsencesImplCopyWithImpl<$Res>
+    extends _$AbsencesCopyWithImpl<$Res, _$AbsencesImpl>
+    implements _$$AbsencesImplCopyWith<$Res> {
+  __$$AbsencesImplCopyWithImpl(
+      _$AbsencesImpl _value, $Res Function(_$AbsencesImpl) _then)
+      : super(_value, _then);
+
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? list = null,
+    Object? total = null,
+  }) {
+    return _then(_$AbsencesImpl(
+      list: null == list
+          ? _value._list
+          : list // ignore: cast_nullable_to_non_nullable
+              as List<Absence>,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+}
+
+/// @nodoc
+@JsonSerializable()
+class _$AbsencesImpl implements _Absences {
+  const _$AbsencesImpl({required final List<Absence> list, required this.total})
+      : _list = list;
+
+  factory _$AbsencesImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AbsencesImplFromJson(json);
+
+  final List<Absence> _list;
+  @override
+  List<Absence> get list {
+    if (_list is EqualUnmodifiableListView) return _list;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_list);
+  }
+
+  @override
+  final int total;
+
+  @override
+  String toString() {
+    return 'Absences(list: $list, total: $total)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$AbsencesImpl &&
+            const DeepCollectionEquality().equals(other._list, _list) &&
+            (identical(other.total, total) || other.total == total));
+  }
+
+  @JsonKey(ignore: true)
+  @override
+  int get hashCode => Object.hash(
+      runtimeType, const DeepCollectionEquality().hash(_list), total);
+
+  @JsonKey(ignore: true)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$AbsencesImplCopyWith<_$AbsencesImpl> get copyWith =>
+      __$$AbsencesImplCopyWithImpl<_$AbsencesImpl>(this, _$identity);
+
+  @override
+  Map<String, dynamic> toJson() {
+    return _$$AbsencesImplToJson(
+      this,
+    );
+  }
+}
+
+abstract class _Absences implements Absences {
+  const factory _Absences(
+      {required final List<Absence> list,
+      required final int total}) = _$AbsencesImpl;
+
+  factory _Absences.fromJson(Map<String, dynamic> json) =
+      _$AbsencesImpl.fromJson;
+
+  @override
+  List<Absence> get list;
+  @override
+  int get total;
+  @override
+  @JsonKey(ignore: true)
+  _$$AbsencesImplCopyWith<_$AbsencesImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}

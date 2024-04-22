@@ -21,7 +21,7 @@ class _AbsencesApi implements AbsencesApi {
   String? baseUrl;
 
   @override
-  Future<ApiResponse<List<Absence>>> getAbsences({
+  Future<ApiResponse<Absences>> getAbsences({
     int? page,
     String? type,
     String? date,
@@ -36,7 +36,7 @@ class _AbsencesApi implements AbsencesApi {
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiResponse<List<Absence>>>(Options(
+        _setStreamType<ApiResponse<Absences>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -52,13 +52,9 @@ class _AbsencesApi implements AbsencesApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ApiResponse<List<Absence>>.fromJson(
+    final value = ApiResponse<Absences>.fromJson(
       _result.data!,
-      (json) => json is List<dynamic>
-          ? json
-              .map<Absence>((i) => Absence.fromJson(i as Map<String, dynamic>))
-              .toList()
-          : List.empty(),
+      (json) => Absences.fromJson(json as Map<String, dynamic>),
     );
     return value;
   }

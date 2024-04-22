@@ -43,3 +43,13 @@ class Absence with _$Absence {
 
   factory Absence.fromJson(Map<String, dynamic> json) => _$AbsenceFromJson(json);
 }
+
+@freezed
+class Absences with _$Absences {
+  const factory Absences({
+    required List<Absence> list,
+    required int total,
+  }) = _Absences;
+
+  factory Absences.fromJson(Map<String, dynamic> json) => _$AbsencesFromJson(json);
+}

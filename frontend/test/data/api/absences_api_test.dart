@@ -32,6 +32,6 @@ void main() {
 
     final response = await absencesApi.getAbsences();
 
-    expect(response.payload, isA<List<Absence>>());
+    expect(response.payload, isA<Absences>());
   });
 }

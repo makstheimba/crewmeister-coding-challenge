@@ -10,7 +10,7 @@ abstract class AbsencesApi {
   factory AbsencesApi(Dio dio, {String baseUrl}) = _AbsencesApi;
 
   @GET('/absences')
-  Future<ApiResponse<List<Absence>>> getAbsences({
+  Future<ApiResponse<Absences>> getAbsences({
     @Query('page') int? page,
     @Query('type') String? type,
     @Query('date') String? date,

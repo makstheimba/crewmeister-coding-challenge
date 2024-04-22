@@ -42,3 +42,17 @@ const _$AbsenceTypeEnumMap = {
   AbsenceType.sickness: 'sickness',
   AbsenceType.vacation: 'vacation',
 };
+
+_$AbsencesImpl _$$AbsencesImplFromJson(Map<String, dynamic> json) =>
+    _$AbsencesImpl(
+      list: (json['list'] as List<dynamic>)
+          .map((e) => Absence.fromJson(e as Map<String, dynamic>))
+          .toList(),
+      total: json['total'] as int,
+    );
+
+Map<String, dynamic> _$$AbsencesImplToJson(_$AbsencesImpl instance) =>
+    <String, dynamic>{
+      'list': instance.list,
+      'total': instance.total,
+    };

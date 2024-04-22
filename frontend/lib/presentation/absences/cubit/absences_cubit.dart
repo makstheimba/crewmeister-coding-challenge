@@ -5,28 +5,41 @@ import 'package:frontend/presentation/absences/cubit/absences_state.dart';
 import 'package:intl/intl.dart';
 
 class AbsencesCubit extends Cubit<AbsencesState> {
-  AbsencesCubit(this._api) : super(const AbsencesState.initial());
-
+  AbsencesCubit(this._api) : super(const AbsencesState());
   final AbsencesApi _api;
 
-  Future<void> loadAbsences({int page = 1, AbsenceType? type, DateTime? date}) async {
-    emit(const AbsencesState.loading());
+  Future<void> loadAbsences({AbsenceType? type, DateTime? date}) async {
+    if (state.filterType != type || state.filterDate != date) {
+      emit(
+        state.copyWith(
+          isLoading: true,
+          errorMessage: null,
+          absences: [],
+          filterType: type,
+          filterDate: date,
+          total: 0,
+        ),
+      );
+    } else {
+      emit(state.copyWith(isLoading: true, errorMessage: null));
+    }
+
     try {
       final response = await _api.getAbsences(
-        page: page,
+        page: state.absences.length ~/ 10 + 1,
         type: type?.toJsonString(),
         date: date != null ? DateFormat('yyyy-MM-dd').format(date) : null,
       );
-
+      final updatedAbsences = List<Absence>.from(state.absences)..addAll(response.payload.list);
       emit(
-        AbsencesState.loaded(
-          absences: response.payload,
-          total: response.payload.length, // TODO: use proper total value
-          currentPage: page,
+        state.copyWith(
+          absences: updatedAbsences,
+          total: response.payload.total,
+          isLoading: false,
         ),
       );
     } catch (e) {
-      emit(AbsencesState.error(e.toString()));
+      emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
     }
   }
 }
