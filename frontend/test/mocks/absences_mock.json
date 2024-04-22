@@ -1,6 +1,8 @@
 {
-    "message": "Success",
-    "payload": [
+  "message": "Success",
+  "payload": {
+    "total": 32,
+    "list": [
       {
         "admitterId": null,
         "admitterNote": "",
@@ -143,4 +145,5 @@
       }
     ]
   }
+}
   

@@ -21,10 +21,16 @@ export const handler = async (event) => {
 
     return {
         statusCode: 200,
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json",
+            "Access-Control-Allow-Origin": "*"
+        },
         body: JSON.stringify({
           "message": "Success",
-          "payload": result
+          "payload": {
+            "list": result,
+            "total": filtered.length
+          }
         })
     };
 };
