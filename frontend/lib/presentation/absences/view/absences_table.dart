@@ -2,15 +2,42 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:frontend/domain/models/absences.dart';
 import 'package:frontend/domain/models/user.dart';
 import 'package:frontend/presentation/absences/cubit/absences_cubit.dart';
 import 'package:frontend/presentation/absences/cubit/absences_state.dart';
+import 'package:frontend/presentation/absences/view/absences_table_date_selector.dart';
+import 'package:frontend/presentation/absences/view/absences_table_type_selector.dart';
 import 'package:intl/intl.dart';
 
-class AbsencesTable extends StatelessWidget {
+class AbsencesTable extends StatefulWidget {
   const AbsencesTable({required this.users, super.key});
   final HashMap<int, UserModel> users;
+
+  @override
+  State<AbsencesTable> createState() => _AbsencesTableState();
+}
+
+class _AbsencesTableState extends State<AbsencesTable> {
+  final _scrollController = ScrollController();
+
+  @override
+  void initState() {
+    context.read<AbsencesCubit>().stream.listen((state) {
+      if (state.isLoading == false) {
+        if (_scrollController.hasClients) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            _scrollController.animateTo(
+              _scrollController.position.maxScrollExtent,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.easeOut,
+            );
+          });
+        }
+      }
+    });
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,59 +54,13 @@ class AbsencesTable extends StatelessWidget {
   Widget _buildFilters() {
     return Container(
       padding: const EdgeInsets.all(8),
-      child: Row(
+      child: const Row(
         children: <Widget>[
-          Expanded(child: _buildDateSelector()),
-          const SizedBox(width: 10),
-          Expanded(child: _buildTypeFilter()),
+          AbsencesTableDateSelector(),
+          SizedBox(width: 16),
+          AbsencesTableTypeSelector(),
         ],
       ),
-    );
-  }
-
-  Widget _buildDateSelector() {
-    return BlocBuilder<AbsencesCubit, AbsencesState>(
-      builder: (context, state) {
-        return ListTile(
-          title: const Text('Select Date:'),
-          trailing: IconButton(
-            icon: const Icon(Icons.calendar_today),
-            onPressed: () async {
-              final cubit = context.read<AbsencesCubit>();
-              final picked = await showDatePicker(
-                context: context,
-                initialDate: state.filterDate ?? DateTime(2021),
-                firstDate: DateTime(2021),
-                lastDate: DateTime(2022),
-              );
-              if (picked != null && picked != state.filterDate) {
-                await cubit.loadAbsences(date: picked);
-              }
-            },
-          ),
-        );
-      },
-    );
-  }
-
-  Widget _buildTypeFilter() {
-    return BlocBuilder<AbsencesCubit, AbsencesState>(
-      builder: (context, state) {
-        return DropdownButton<AbsenceType>(
-          value: state.filterType,
-          onChanged: (AbsenceType? newValue) {
-            if (newValue != null) {
-              context.read<AbsencesCubit>().loadAbsences(type: newValue);
-            }
-          },
-          items: AbsenceType.values.map((AbsenceType type) {
-            return DropdownMenuItem<AbsenceType>(
-              value: type,
-              child: Text(type.toString().split('.').last),
-            );
-          }).toList(),
-        );
-      },
     );
   }
 
@@ -90,6 +71,7 @@ class AbsencesTable extends StatelessWidget {
           children: [
             Expanded(
               child: SingleChildScrollView(
+                controller: _scrollController,
                 child: DataTable(
                   dataRowMaxHeight: double.infinity,
                   columnSpacing: 24,
@@ -99,13 +81,13 @@ class AbsencesTable extends StatelessWidget {
                     DataColumn(label: SizedBox(width: 200, child: Text('Period'))),
                     DataColumn(label: SizedBox(width: 150, child: Text('Member Note'))),
                     DataColumn(label: SizedBox(width: 50, child: Text('Status'))),
-                    DataColumn(label: Text('Admitter Note')),
+                    DataColumn(label: SizedBox(width: 100, child: Text('Admitter Note'))),
                   ],
                   rows: state.absences
                       .map<DataRow>(
                         (absence) => DataRow(
                           cells: <DataCell>[
-                            DataCell(Text(users[absence.userId]?.name ?? 'id: ${absence.userId}')),
+                            DataCell(Text(widget.users[absence.userId]?.name ?? 'id: ${absence.userId}')),
                             DataCell(Text(absence.type.toString().split('.').last)),
                             DataCell(
                               Text(
@@ -122,6 +104,7 @@ class AbsencesTable extends StatelessWidget {
                 ),
               ),
             ),
+            const SizedBox(height: 16),
             if (state.isLoading) const LinearProgressIndicator(),
             if (!state.isLoading && state.absences.length < state.total)
               TextButton(
@@ -129,6 +112,7 @@ class AbsencesTable extends StatelessWidget {
                     context.read<AbsencesCubit>().loadAbsences(type: state.filterType, date: state.filterDate),
                 child: const Text('Show More'),
               ),
+            const SizedBox(height: 16),
           ],
         );
       },
