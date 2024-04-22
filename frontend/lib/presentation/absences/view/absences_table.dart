@@ -14,7 +14,7 @@ class AbsencesTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Absences')),
+      appBar: AppBar(title: const Text('Absences')),
       body: Column(
         children: [
           _buildFilters(),
@@ -26,11 +26,11 @@ class AbsencesTable extends StatelessWidget {
 
   Widget _buildFilters() {
     return Container(
-      padding: EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Row(
         children: <Widget>[
           Expanded(child: _buildDateSelector()),
-          SizedBox(width: 10),
+          const SizedBox(width: 10),
           Expanded(child: _buildTypeFilter()),
         ],
       ),
@@ -41,16 +41,16 @@ class AbsencesTable extends StatelessWidget {
     return BlocBuilder<AbsencesCubit, AbsencesState>(
       builder: (context, state) {
         return ListTile(
-          title: Text('Select Date:'),
+          title: const Text('Select Date:'),
           trailing: IconButton(
-            icon: Icon(Icons.calendar_today),
+            icon: const Icon(Icons.calendar_today),
             onPressed: () async {
               final cubit = context.read<AbsencesCubit>();
-              final DateTime? picked = await showDatePicker(
+              final picked = await showDatePicker(
                 context: context,
-                initialDate: state.filterDate ?? DateTime.now(),
-                firstDate: DateTime(2000),
-                lastDate: DateTime(2100),
+                initialDate: state.filterDate ?? DateTime(2021),
+                firstDate: DateTime(2021),
+                lastDate: DateTime(2022),
               );
               if (picked != null && picked != state.filterDate) {
                 await cubit.loadAbsences(date: picked);
@@ -88,52 +88,50 @@ class AbsencesTable extends StatelessWidget {
       builder: (context, state) {
         return Column(
           children: [
-            _tableHeader(),
             Expanded(
-              child: ListView.builder(
-                itemCount: state.absences.length,
-                itemBuilder: (context, index) => _tableRow(state.absences[index]),
+              child: SingleChildScrollView(
+                child: DataTable(
+                  dataRowMaxHeight: double.infinity,
+                  columnSpacing: 24,
+                  columns: const <DataColumn>[
+                    DataColumn(label: SizedBox(width: 60, child: Text('Name'))),
+                    DataColumn(label: SizedBox(width: 50, child: Text('Type'))),
+                    DataColumn(label: SizedBox(width: 200, child: Text('Period'))),
+                    DataColumn(label: SizedBox(width: 150, child: Text('Member Note'))),
+                    DataColumn(label: SizedBox(width: 50, child: Text('Status'))),
+                    DataColumn(label: Text('Admitter Note')),
+                  ],
+                  rows: state.absences
+                      .map<DataRow>(
+                        (absence) => DataRow(
+                          cells: <DataCell>[
+                            DataCell(Text(users[absence.userId]?.name ?? 'id: ${absence.userId}')),
+                            DataCell(Text(absence.type.toString().split('.').last)),
+                            DataCell(
+                              Text(
+                                '${DateFormat('yyyy-MM-dd').format(absence.startDate)} - ${DateFormat('yyyy-MM-dd').format(absence.endDate)}',
+                              ),
+                            ),
+                            DataCell(Text(absence.memberNote ?? 'N/A')),
+                            DataCell(Text(absence.status.toString().split('.').last)),
+                            DataCell(Text(absence.admitterNote ?? 'N/A')),
+                          ],
+                        ),
+                      )
+                      .toList(),
+                ),
               ),
             ),
-            if (state.isLoading) LinearProgressIndicator(),
+            if (state.isLoading) const LinearProgressIndicator(),
             if (!state.isLoading && state.absences.length < state.total)
               TextButton(
                 onPressed: () =>
                     context.read<AbsencesCubit>().loadAbsences(type: state.filterType, date: state.filterDate),
-                child: Text('Show More'),
+                child: const Text('Show More'),
               ),
           ],
         );
       },
-    );
-  }
-
-  Widget _tableHeader() {
-    return Row(
-      children: <Widget>[
-        Expanded(child: Text('Member Name')),
-        Expanded(child: Text('Type of Absence')),
-        Expanded(child: Text('Period')),
-        Expanded(child: Text('Member Note')),
-        Expanded(child: Text('Status')),
-        Expanded(child: Text('Admitter Note')),
-      ],
-    );
-  }
-
-  Widget _tableRow(Absence absence) {
-    return Row(
-      children: <Widget>[
-        Expanded(child: Text(users[absence.userId]?.name ?? absence.userId.toString())),
-        Expanded(child: Text(absence.type.toString().split('.').last)),
-        Expanded(
-          child: Text(
-              '${DateFormat('yyyy-MM-dd').format(absence.startDate)} - ${DateFormat('yyyy-MM-dd').format(absence.endDate)}'),
-        ),
-        Expanded(child: Text(absence.memberNote ?? 'N/A')),
-        Expanded(child: Text(absence.status.toString().split('.').last)),
-        Expanded(child: Text(absence.admitterNote ?? 'N/A')),
-      ],
     );
   }
 }
