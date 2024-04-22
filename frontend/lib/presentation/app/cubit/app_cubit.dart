@@ -16,11 +16,12 @@ class AppCubit extends Cubit<AppState> {
       final usersMap = HashMap<int, UserModel>();
 
       for (final user in response.payload) {
-        usersMap[user.id] = user;
+        usersMap[user.userId] = user;
       }
 
       emit(AppState.loaded(users: usersMap));
     } catch (e) {
+      print('[AppCubit]: error fetching users ${e.toString()}');
       emit(AppState.error(e.toString()));
     }
   }

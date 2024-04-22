@@ -39,6 +39,7 @@ class AbsencesCubit extends Cubit<AbsencesState> {
         ),
       );
     } catch (e) {
+      print('[AbsencesCubit]: error fetching absences ${e.toString()}');
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
     }
   }

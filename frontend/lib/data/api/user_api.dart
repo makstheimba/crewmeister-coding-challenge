@@ -7,7 +7,7 @@ part 'user_api.g.dart';
 
 @RestApi(baseUrl: 'https://nhz2w8h2eb.execute-api.eu-north-1.amazonaws.com/')
 abstract class UserApi {
-  factory UserApi(Dio dio, {String baseUrl}) = _UserApi;
+  factory UserApi(Dio dio) = _UserApi;
 
   @GET('/users')
   Future<ApiResponse<List<UserModel>>> getUsers();

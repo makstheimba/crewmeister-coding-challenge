@@ -7,7 +7,7 @@ part 'absences_api.g.dart';
 
 @RestApi(baseUrl: 'https://nhz2w8h2eb.execute-api.eu-north-1.amazonaws.com/')
 abstract class AbsencesApi {
-  factory AbsencesApi(Dio dio, {String baseUrl}) = _AbsencesApi;
+  factory AbsencesApi(Dio dio) = _AbsencesApi;
 
   @GET('/absences')
   Future<ApiResponse<Absences>> getAbsences({

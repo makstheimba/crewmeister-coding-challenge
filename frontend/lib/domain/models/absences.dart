@@ -5,6 +5,8 @@ part 'absences.g.dart';
 
 enum AbsenceType { sickness, vacation }
 
+enum AbsenceStatus { requested, confirmed, rejected }
+
 extension AbsenceTypeExtension on AbsenceType {
   static AbsenceType fromString(String type) {
     switch (type) {
@@ -34,14 +36,22 @@ class Absence with _$Absence {
     @JsonKey(fromJson: DateTime.parse) required DateTime endDate,
     @JsonKey(fromJson: DateTime.parse) required DateTime startDate,
     @JsonKey(fromJson: AbsenceTypeExtension.fromString) required AbsenceType type,
-    @Default('') String memberNote,
-    @Default('') String admitterNote,
     @JsonKey(fromJson: _dateFromJson) DateTime? confirmedAt,
-    String? rejectedAt,
+    @JsonKey(fromJson: _dateFromJson) DateTime? rejectedAt,
+    String? admitterNote,
+    String? memberNote,
     int? admitterId,
   }) = _Absence;
 
   factory Absence.fromJson(Map<String, dynamic> json) => _$AbsenceFromJson(json);
+
+  const Absence._();
+
+  AbsenceStatus get status => confirmedAt != null
+      ? AbsenceStatus.confirmed
+      : rejectedAt != null
+          ? AbsenceStatus.rejected
+          : AbsenceStatus.requested;
 }
 
 @freezed

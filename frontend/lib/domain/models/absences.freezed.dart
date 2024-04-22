@@ -31,11 +31,12 @@ mixin _$Absence {
   DateTime get startDate => throw _privateConstructorUsedError;
   @JsonKey(fromJson: AbsenceTypeExtension.fromString)
   AbsenceType get type => throw _privateConstructorUsedError;
-  String get memberNote => throw _privateConstructorUsedError;
-  String get admitterNote => throw _privateConstructorUsedError;
   @JsonKey(fromJson: _dateFromJson)
   DateTime? get confirmedAt => throw _privateConstructorUsedError;
-  String? get rejectedAt => throw _privateConstructorUsedError;
+  @JsonKey(fromJson: _dateFromJson)
+  DateTime? get rejectedAt => throw _privateConstructorUsedError;
+  String? get admitterNote => throw _privateConstructorUsedError;
+  String? get memberNote => throw _privateConstructorUsedError;
   int? get admitterId => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -56,10 +57,10 @@ abstract class $AbsenceCopyWith<$Res> {
       @JsonKey(fromJson: DateTime.parse) DateTime endDate,
       @JsonKey(fromJson: DateTime.parse) DateTime startDate,
       @JsonKey(fromJson: AbsenceTypeExtension.fromString) AbsenceType type,
-      String memberNote,
-      String admitterNote,
       @JsonKey(fromJson: _dateFromJson) DateTime? confirmedAt,
-      String? rejectedAt,
+      @JsonKey(fromJson: _dateFromJson) DateTime? rejectedAt,
+      String? admitterNote,
+      String? memberNote,
       int? admitterId});
 }
 
@@ -83,10 +84,10 @@ class _$AbsenceCopyWithImpl<$Res, $Val extends Absence>
     Object? endDate = null,
     Object? startDate = null,
     Object? type = null,
-    Object? memberNote = null,
-    Object? admitterNote = null,
     Object? confirmedAt = freezed,
     Object? rejectedAt = freezed,
+    Object? admitterNote = freezed,
+    Object? memberNote = freezed,
     Object? admitterId = freezed,
   }) {
     return _then(_value.copyWith(
@@ -118,14 +119,6 @@ class _$AbsenceCopyWithImpl<$Res, $Val extends Absence>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as AbsenceType,
-      memberNote: null == memberNote
-          ? _value.memberNote
-          : memberNote // ignore: cast_nullable_to_non_nullable
-              as String,
-      admitterNote: null == admitterNote
-          ? _value.admitterNote
-          : admitterNote // ignore: cast_nullable_to_non_nullable
-              as String,
       confirmedAt: freezed == confirmedAt
           ? _value.confirmedAt
           : confirmedAt // ignore: cast_nullable_to_non_nullable
@@ -133,6 +126,14 @@ class _$AbsenceCopyWithImpl<$Res, $Val extends Absence>
       rejectedAt: freezed == rejectedAt
           ? _value.rejectedAt
           : rejectedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      admitterNote: freezed == admitterNote
+          ? _value.admitterNote
+          : admitterNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      memberNote: freezed == memberNote
+          ? _value.memberNote
+          : memberNote // ignore: cast_nullable_to_non_nullable
               as String?,
       admitterId: freezed == admitterId
           ? _value.admitterId
@@ -157,10 +158,10 @@ abstract class _$$AbsenceImplCopyWith<$Res> implements $AbsenceCopyWith<$Res> {
       @JsonKey(fromJson: DateTime.parse) DateTime endDate,
       @JsonKey(fromJson: DateTime.parse) DateTime startDate,
       @JsonKey(fromJson: AbsenceTypeExtension.fromString) AbsenceType type,
-      String memberNote,
-      String admitterNote,
       @JsonKey(fromJson: _dateFromJson) DateTime? confirmedAt,
-      String? rejectedAt,
+      @JsonKey(fromJson: _dateFromJson) DateTime? rejectedAt,
+      String? admitterNote,
+      String? memberNote,
       int? admitterId});
 }
 
@@ -182,10 +183,10 @@ class __$$AbsenceImplCopyWithImpl<$Res>
     Object? endDate = null,
     Object? startDate = null,
     Object? type = null,
-    Object? memberNote = null,
-    Object? admitterNote = null,
     Object? confirmedAt = freezed,
     Object? rejectedAt = freezed,
+    Object? admitterNote = freezed,
+    Object? memberNote = freezed,
     Object? admitterId = freezed,
   }) {
     return _then(_$AbsenceImpl(
@@ -217,14 +218,6 @@ class __$$AbsenceImplCopyWithImpl<$Res>
           ? _value.type
           : type // ignore: cast_nullable_to_non_nullable
               as AbsenceType,
-      memberNote: null == memberNote
-          ? _value.memberNote
-          : memberNote // ignore: cast_nullable_to_non_nullable
-              as String,
-      admitterNote: null == admitterNote
-          ? _value.admitterNote
-          : admitterNote // ignore: cast_nullable_to_non_nullable
-              as String,
       confirmedAt: freezed == confirmedAt
           ? _value.confirmedAt
           : confirmedAt // ignore: cast_nullable_to_non_nullable
@@ -232,6 +225,14 @@ class __$$AbsenceImplCopyWithImpl<$Res>
       rejectedAt: freezed == rejectedAt
           ? _value.rejectedAt
           : rejectedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
+      admitterNote: freezed == admitterNote
+          ? _value.admitterNote
+          : admitterNote // ignore: cast_nullable_to_non_nullable
+              as String?,
+      memberNote: freezed == memberNote
+          ? _value.memberNote
+          : memberNote // ignore: cast_nullable_to_non_nullable
               as String?,
       admitterId: freezed == admitterId
           ? _value.admitterId
@@ -243,7 +244,7 @@ class __$$AbsenceImplCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$AbsenceImpl implements _Absence {
+class _$AbsenceImpl extends _Absence {
   const _$AbsenceImpl(
       {required this.crewId,
       required this.id,
@@ -252,11 +253,12 @@ class _$AbsenceImpl implements _Absence {
       @JsonKey(fromJson: DateTime.parse) required this.endDate,
       @JsonKey(fromJson: DateTime.parse) required this.startDate,
       @JsonKey(fromJson: AbsenceTypeExtension.fromString) required this.type,
-      this.memberNote = '',
-      this.admitterNote = '',
       @JsonKey(fromJson: _dateFromJson) this.confirmedAt,
-      this.rejectedAt,
-      this.admitterId});
+      @JsonKey(fromJson: _dateFromJson) this.rejectedAt,
+      this.admitterNote,
+      this.memberNote,
+      this.admitterId})
+      : super._();
 
   factory _$AbsenceImpl.fromJson(Map<String, dynamic> json) =>
       _$$AbsenceImplFromJson(json);
@@ -280,22 +282,21 @@ class _$AbsenceImpl implements _Absence {
   @JsonKey(fromJson: AbsenceTypeExtension.fromString)
   final AbsenceType type;
   @override
-  @JsonKey()
-  final String memberNote;
-  @override
-  @JsonKey()
-  final String admitterNote;
-  @override
   @JsonKey(fromJson: _dateFromJson)
   final DateTime? confirmedAt;
   @override
-  final String? rejectedAt;
+  @JsonKey(fromJson: _dateFromJson)
+  final DateTime? rejectedAt;
+  @override
+  final String? admitterNote;
+  @override
+  final String? memberNote;
   @override
   final int? admitterId;
 
   @override
   String toString() {
-    return 'Absence(crewId: $crewId, id: $id, userId: $userId, createdAt: $createdAt, endDate: $endDate, startDate: $startDate, type: $type, memberNote: $memberNote, admitterNote: $admitterNote, confirmedAt: $confirmedAt, rejectedAt: $rejectedAt, admitterId: $admitterId)';
+    return 'Absence(crewId: $crewId, id: $id, userId: $userId, createdAt: $createdAt, endDate: $endDate, startDate: $startDate, type: $type, confirmedAt: $confirmedAt, rejectedAt: $rejectedAt, admitterNote: $admitterNote, memberNote: $memberNote, admitterId: $admitterId)';
   }
 
   @override
@@ -312,14 +313,14 @@ class _$AbsenceImpl implements _Absence {
             (identical(other.startDate, startDate) ||
                 other.startDate == startDate) &&
             (identical(other.type, type) || other.type == type) &&
-            (identical(other.memberNote, memberNote) ||
-                other.memberNote == memberNote) &&
-            (identical(other.admitterNote, admitterNote) ||
-                other.admitterNote == admitterNote) &&
             (identical(other.confirmedAt, confirmedAt) ||
                 other.confirmedAt == confirmedAt) &&
             (identical(other.rejectedAt, rejectedAt) ||
                 other.rejectedAt == rejectedAt) &&
+            (identical(other.admitterNote, admitterNote) ||
+                other.admitterNote == admitterNote) &&
+            (identical(other.memberNote, memberNote) ||
+                other.memberNote == memberNote) &&
             (identical(other.admitterId, admitterId) ||
                 other.admitterId == admitterId));
   }
@@ -335,10 +336,10 @@ class _$AbsenceImpl implements _Absence {
       endDate,
       startDate,
       type,
-      memberNote,
-      admitterNote,
       confirmedAt,
       rejectedAt,
+      admitterNote,
+      memberNote,
       admitterId);
 
   @JsonKey(ignore: true)
@@ -355,7 +356,7 @@ class _$AbsenceImpl implements _Absence {
   }
 }
 
-abstract class _Absence implements Absence {
+abstract class _Absence extends Absence {
   const factory _Absence(
       {required final int crewId,
       required final int id,
@@ -365,11 +366,12 @@ abstract class _Absence implements Absence {
       @JsonKey(fromJson: DateTime.parse) required final DateTime startDate,
       @JsonKey(fromJson: AbsenceTypeExtension.fromString)
       required final AbsenceType type,
-      final String memberNote,
-      final String admitterNote,
       @JsonKey(fromJson: _dateFromJson) final DateTime? confirmedAt,
-      final String? rejectedAt,
+      @JsonKey(fromJson: _dateFromJson) final DateTime? rejectedAt,
+      final String? admitterNote,
+      final String? memberNote,
       final int? admitterId}) = _$AbsenceImpl;
+  const _Absence._() : super._();
 
   factory _Absence.fromJson(Map<String, dynamic> json) = _$AbsenceImpl.fromJson;
 
@@ -392,14 +394,15 @@ abstract class _Absence implements Absence {
   @JsonKey(fromJson: AbsenceTypeExtension.fromString)
   AbsenceType get type;
   @override
-  String get memberNote;
-  @override
-  String get admitterNote;
-  @override
   @JsonKey(fromJson: _dateFromJson)
   DateTime? get confirmedAt;
   @override
-  String? get rejectedAt;
+  @JsonKey(fromJson: _dateFromJson)
+  DateTime? get rejectedAt;
+  @override
+  String? get admitterNote;
+  @override
+  String? get memberNote;
   @override
   int? get admitterId;
   @override

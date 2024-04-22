@@ -15,10 +15,10 @@ _$AbsenceImpl _$$AbsenceImplFromJson(Map<String, dynamic> json) =>
       endDate: DateTime.parse(json['endDate'] as String),
       startDate: DateTime.parse(json['startDate'] as String),
       type: AbsenceTypeExtension.fromString(json['type'] as String),
-      memberNote: json['memberNote'] as String? ?? '',
-      admitterNote: json['admitterNote'] as String? ?? '',
       confirmedAt: _dateFromJson(json['confirmedAt'] as String?),
-      rejectedAt: json['rejectedAt'] as String?,
+      rejectedAt: _dateFromJson(json['rejectedAt'] as String?),
+      admitterNote: json['admitterNote'] as String?,
+      memberNote: json['memberNote'] as String?,
       admitterId: json['admitterId'] as int?,
     );
 
@@ -31,10 +31,10 @@ Map<String, dynamic> _$$AbsenceImplToJson(_$AbsenceImpl instance) =>
       'endDate': instance.endDate.toIso8601String(),
       'startDate': instance.startDate.toIso8601String(),
       'type': _$AbsenceTypeEnumMap[instance.type]!,
-      'memberNote': instance.memberNote,
-      'admitterNote': instance.admitterNote,
       'confirmedAt': instance.confirmedAt?.toIso8601String(),
-      'rejectedAt': instance.rejectedAt,
+      'rejectedAt': instance.rejectedAt?.toIso8601String(),
+      'admitterNote': instance.admitterNote,
+      'memberNote': instance.memberNote,
       'admitterId': instance.admitterId,
     };
 
