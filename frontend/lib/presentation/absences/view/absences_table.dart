@@ -53,6 +53,19 @@ class _AbsencesTableState extends State<AbsencesTable> {
   Widget _buildAbsencesTable() {
     return BlocBuilder<AbsencesCubit, AbsencesState>(
       builder: (context, state) {
+        if (state.absences.isEmpty && state.errorMessage != null) {
+          return Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                ElevatedButton(
+                  onPressed: () => context.read<AbsencesCubit>().loadAbsences(),
+                  child: const Text('Try Again'),
+                ),
+              ],
+            ),
+          );
+        }
         return Column(
           children: [
             Expanded(

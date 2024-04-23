@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/data/api/absences_api.dart';
 import 'package:frontend/domain/models/user.dart';
 import 'package:frontend/presentation/absences/cubit/absences_cubit.dart';
+import 'package:frontend/presentation/absences/cubit/absences_state.dart';
 import 'package:frontend/presentation/absences/view/absences_table.dart';
 
 class AbsencesPage extends StatelessWidget {
@@ -35,6 +36,21 @@ class __AbsencesViewState extends State<_AbsencesView> {
 
   @override
   Widget build(BuildContext context) {
-    return AbsencesTable(users: widget.users);
+    return BlocConsumer<AbsencesCubit, AbsencesState>(
+      listener: (context, state) {
+        if (state.errorMessage != null) {
+          ScaffoldMessenger.of(context)
+            ..clearSnackBars()
+            ..showSnackBar(
+              const SnackBar(
+                content: Text('Something went wrong when trying to load absences. Please, try again later.'),
+              ),
+            );
+        }
+      },
+      builder: (context, state) {
+        return AbsencesTable(users: widget.users);
+      },
+    );
   }
 }
