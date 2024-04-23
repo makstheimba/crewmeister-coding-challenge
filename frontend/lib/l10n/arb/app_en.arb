@@ -1,7 +1,19 @@
 {
     "@@locale": "en",
-    "counterAppBarTitle": "Counter",
-    "@counterAppBarTitle": {
-        "description": "Text shown in the AppBar of the Counter Page"
-    }
+    "absencesTableTitle": "Absences",
+    "absencesTableFiltersDate": "Filter by Date",
+    "absencesTableFiltersType": "Filter by Type",
+    "absencesTableFiltersClear": "Clear Filters",
+    "absencesTableHeadName": "Name",
+    "absencesTableHeadType": "Type",
+    "absencesTableHeadPeriod": "Period",
+    "absencesTableHeadMemberNote": "Member Note",
+    "absencesTableHeadStatus": "Status",
+    "absencesTableHeadAdmitterNote": "Admitter Note",
+    "absencesTableShowMore": "Show More",
+    "absencesTableTryAgain": "Try Again",
+    "absencesTableErrorText": "Something went wrong when trying to load absences. Please, try again later.",
+
+    "appInitializationError": "Something went wrong when trying to initialize the app. Please, try again later.",
+    "appInitializationRetry": "Retry"
 }

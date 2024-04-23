@@ -3,6 +3,7 @@ import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/domain/models/user.dart';
+import 'package:frontend/l10n/l10n.dart';
 import 'package:frontend/presentation/absences/cubit/absences_cubit.dart';
 import 'package:frontend/presentation/absences/cubit/absences_state.dart';
 import 'package:frontend/presentation/absences/view/absences_table_filters.dart';
@@ -40,7 +41,7 @@ class _AbsencesTableState extends State<AbsencesTable> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Absences')),
+      appBar: AppBar(title: Text(context.l10n.absencesTableTitle)),
       body: Column(
         children: [
           Container(padding: const EdgeInsets.all(8), child: const AbsencesTableFilters()),
@@ -60,7 +61,7 @@ class _AbsencesTableState extends State<AbsencesTable> {
               children: [
                 ElevatedButton(
                   onPressed: () => context.read<AbsencesCubit>().loadAbsences(),
-                  child: const Text('Try Again'),
+                  child: Text(context.l10n.absencesTableTryAgain),
                 ),
               ],
             ),
@@ -74,13 +75,13 @@ class _AbsencesTableState extends State<AbsencesTable> {
                 child: DataTable(
                   dataRowMaxHeight: double.infinity,
                   columnSpacing: 24,
-                  columns: const <DataColumn>[
-                    DataColumn(label: SizedBox(width: 60, child: Text('Name'))),
-                    DataColumn(label: SizedBox(width: 50, child: Text('Type'))),
-                    DataColumn(label: SizedBox(width: 200, child: Text('Period'))),
-                    DataColumn(label: SizedBox(width: 150, child: Text('Member Note'))),
-                    DataColumn(label: SizedBox(width: 50, child: Text('Status'))),
-                    DataColumn(label: SizedBox(width: 100, child: Text('Admitter Note'))),
+                  columns: <DataColumn>[
+                    DataColumn(label: SizedBox(width: 60, child: Text(context.l10n.absencesTableHeadName))),
+                    DataColumn(label: SizedBox(width: 50, child: Text(context.l10n.absencesTableHeadType))),
+                    DataColumn(label: SizedBox(width: 200, child: Text(context.l10n.absencesTableHeadPeriod))),
+                    DataColumn(label: SizedBox(width: 150, child: Text(context.l10n.absencesTableHeadMemberNote))),
+                    DataColumn(label: SizedBox(width: 50, child: Text(context.l10n.absencesTableHeadStatus))),
+                    DataColumn(label: SizedBox(width: 100, child: Text(context.l10n.absencesTableHeadAdmitterNote))),
                   ],
                   rows: state.absences
                       .map<DataRow>(
@@ -109,7 +110,7 @@ class _AbsencesTableState extends State<AbsencesTable> {
               TextButton(
                 onPressed: () =>
                     context.read<AbsencesCubit>().loadAbsences(type: state.filterType, date: state.filterDate),
-                child: const Text('Show More'),
+                child: Text(context.l10n.absencesTableShowMore),
               ),
             const SizedBox(height: 16),
           ],

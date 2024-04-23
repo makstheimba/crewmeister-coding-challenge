@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/data/api/absences_api.dart';
 import 'package:frontend/domain/models/user.dart';
+import 'package:frontend/l10n/l10n.dart';
 import 'package:frontend/presentation/absences/cubit/absences_cubit.dart';
 import 'package:frontend/presentation/absences/cubit/absences_state.dart';
 import 'package:frontend/presentation/absences/view/absences_table.dart';
@@ -41,11 +42,7 @@ class __AbsencesViewState extends State<_AbsencesView> {
         if (state.errorMessage != null) {
           ScaffoldMessenger.of(context)
             ..clearSnackBars()
-            ..showSnackBar(
-              const SnackBar(
-                content: Text('Something went wrong when trying to load absences. Please, try again later.'),
-              ),
-            );
+            ..showSnackBar(SnackBar(content: Text(context.l10n.absencesTableErrorText)));
         }
       },
       builder: (context, state) {

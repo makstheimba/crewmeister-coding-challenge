@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:frontend/data/api/user_api.dart';
+import 'package:frontend/l10n/l10n.dart';
 import 'package:frontend/presentation/absences/view/absences_page.dart';
 import 'package:frontend/presentation/app/cubit/app_cubit.dart';
 import 'package:frontend/presentation/app/cubit/app_state.dart';
@@ -56,11 +57,11 @@ class __AppViewState extends State<_AppView> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text('Something went wrong while initializing the app.'),
+              Text(context.l10n.appInitializationError),
               const SizedBox(height: 16),
               ElevatedButton(
                 onPressed: () => context.read<AppCubit>().initialize(),
-                child: const Text('Retry'),
+                child: Text(context.l10n.appInitializationRetry),
               ),
             ],
           ),

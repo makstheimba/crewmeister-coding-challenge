@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/domain/models/absences.dart';
+import 'package:frontend/l10n/l10n.dart';
 import 'package:frontend/presentation/absences/cubit/absences_cubit.dart';
 import 'package:frontend/presentation/absences/cubit/absences_state.dart';
 import 'package:intl/intl.dart';
@@ -28,12 +29,14 @@ class AbsencesTableFilters extends StatelessWidget {
                 }
               },
               child: Text(
-                state.filterDate != null ? DateFormat('yyyy-MM-dd').format(state.filterDate!) : 'Filter by Date',
+                state.filterDate != null
+                    ? DateFormat('yyyy-MM-dd').format(state.filterDate!)
+                    : context.l10n.absencesTableFiltersDate,
               ),
             ),
             const SizedBox(width: 16),
             DropdownButton<AbsenceType>(
-              hint: const Text('Filter by Type'),
+              hint: Text(context.l10n.absencesTableFiltersType),
               value: state.filterType,
               focusColor: Colors.white,
               onChanged: (AbsenceType? newValue) {
@@ -52,7 +55,7 @@ class AbsencesTableFilters extends StatelessWidget {
             if (state.filterDate != null || state.filterType != null)
               ElevatedButton(
                 onPressed: () => context.read<AbsencesCubit>().loadAbsences(),
-                child: const Text('Clear filters'),
+                child: Text(context.l10n.absencesTableFiltersClear),
               ),
           ],
         );
