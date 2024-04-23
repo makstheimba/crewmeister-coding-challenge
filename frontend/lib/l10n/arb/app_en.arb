@@ -4,6 +4,7 @@
     "absencesTableFiltersDate": "Filter by Date",
     "absencesTableFiltersType": "Filter by Type",
     "absencesTableFiltersClear": "Clear Filters",
+    "absencesTableFiltersICal": "Export to iCal",
     "absencesTableHeadName": "Name",
     "absencesTableHeadType": "Type",
     "absencesTableHeadPeriod": "Period",

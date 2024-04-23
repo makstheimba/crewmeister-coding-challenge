@@ -1,4 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:intl/intl.dart';
 
 part 'absences.freezed.dart';
 part 'absences.g.dart';
@@ -52,6 +53,23 @@ class Absence with _$Absence {
       : rejectedAt != null
           ? AbsenceStatus.rejected
           : AbsenceStatus.requested;
+
+  String formatToICal(String? userName) {
+    final formatter = DateFormat("yyyyMMdd'T'HHmmss'Z'");
+
+    final components = [
+      'BEGIN:VEVENT',
+      'UID:$id+$userId+$crewId',
+      'DTSTAMP:${formatter.format(createdAt.toUtc())}',
+      'DTSTART:${formatter.format(startDate.toUtc())}',
+      'DTEND:${formatter.format(endDate.toUtc())}',
+      'SUMMARY:Absence of ${userName ?? userId} from Crew $crewId',
+      "DESCRIPTION:Type:${type.toJsonString()} \\nMemberNote:${memberNote ?? ''} \\nAdmitterNote: ${admitterNote ?? ''}",
+      'END:VEVENT',
+    ];
+
+    return components.join('\r\n');
+  }
 }
 
 @freezed
