@@ -5,8 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/domain/models/user.dart';
 import 'package:frontend/presentation/absences/cubit/absences_cubit.dart';
 import 'package:frontend/presentation/absences/cubit/absences_state.dart';
-import 'package:frontend/presentation/absences/view/absences_table_date_selector.dart';
-import 'package:frontend/presentation/absences/view/absences_table_type_selector.dart';
+import 'package:frontend/presentation/absences/view/absences_table_filters.dart';
 import 'package:intl/intl.dart';
 
 class AbsencesTable extends StatefulWidget {
@@ -44,21 +43,8 @@ class _AbsencesTableState extends State<AbsencesTable> {
       appBar: AppBar(title: const Text('Absences')),
       body: Column(
         children: [
-          _buildFilters(),
+          Container(padding: const EdgeInsets.all(8), child: const AbsencesTableFilters()),
           Expanded(child: _buildAbsencesTable()),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildFilters() {
-    return Container(
-      padding: const EdgeInsets.all(8),
-      child: const Row(
-        children: <Widget>[
-          AbsencesTableDateSelector(),
-          SizedBox(width: 16),
-          AbsencesTableTypeSelector(),
         ],
       ),
     );
