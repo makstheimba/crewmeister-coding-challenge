@@ -1,5 +1,5 @@
 import 'dart:collection';
-import 'package:flutter/foundation.dart';
+import 'dart:developer';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/data/api/user_api.dart';
 import 'package:frontend/domain/models/user.dart';
@@ -22,9 +22,7 @@ class AppCubit extends Cubit<AppState> {
 
       emit(AppState.loaded(users: usersMap));
     } catch (e) {
-      if (kDebugMode) {
-        print('[AppCubit]: error fetching users $e');
-      }
+      log('[AppCubit]: error fetching users $e');
       emit(AppState.error(e.toString()));
     }
   }
