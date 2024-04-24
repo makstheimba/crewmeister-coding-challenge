@@ -1,5 +1,6 @@
 import 'dart:collection';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/domain/models/absences.dart';
@@ -55,7 +56,10 @@ class _AbsencesTableState extends State<AbsencesTable> {
                 Container(
                   padding: const EdgeInsets.all(8),
                   child: AbsencesTableFilters(
-                    onExportToICal: () => context.read<AbsencesCubit>().exportToICal(widget.users),
+                    filterDate: state.filterDate,
+                    filterType: state.filterType,
+                    absences: state.absences,
+                    onExportToICal: kIsWeb ? () => context.read<AbsencesCubit>().exportToICal(widget.users) : null,
                     onFilterDateChanged: (date) => _loadAbsences(date: date, type: state.filterType),
                     onFilterTypeChanged: (type) => _loadAbsences(date: state.filterDate, type: type),
                     onClearFilters: _loadAbsences,
