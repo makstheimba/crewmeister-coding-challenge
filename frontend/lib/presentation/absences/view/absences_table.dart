@@ -89,35 +89,48 @@ class _AbsencesTableState extends State<AbsencesTable> {
         Expanded(
           child: SingleChildScrollView(
             controller: _scrollController,
-            child: DataTable(
-              dataRowMaxHeight: double.infinity,
-              columnSpacing: 24,
-              columns: <DataColumn>[
-                DataColumn(label: SizedBox(width: 60, child: Text(context.l10n.absencesTableHeadName))),
-                DataColumn(label: SizedBox(width: 50, child: Text(context.l10n.absencesTableHeadType))),
-                DataColumn(label: SizedBox(width: 200, child: Text(context.l10n.absencesTableHeadPeriod))),
-                DataColumn(label: SizedBox(width: 140, child: Text(context.l10n.absencesTableHeadMemberNote))),
-                DataColumn(label: SizedBox(width: 50, child: Text(context.l10n.absencesTableHeadStatus))),
-                DataColumn(label: SizedBox(width: 100, child: Text(context.l10n.absencesTableHeadAdmitterNote))),
-              ],
-              rows: state.absences
-                  .map<DataRow>(
-                    (absence) => DataRow(
-                      cells: <DataCell>[
-                        DataCell(Text(widget.users[absence.userId]?.name ?? 'id: ${absence.userId}')),
-                        DataCell(Text(absence.type.toString().split('.').last)),
-                        DataCell(
-                          Text(
-                            '${DateFormat('yyyy-MM-dd').format(absence.startDate)} - ${DateFormat('yyyy-MM-dd').format(absence.endDate)}',
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                dataRowMaxHeight: double.infinity,
+                columnSpacing: 24,
+                columns: <DataColumn>[
+                  DataColumn(label: SizedBox(width: 60, child: Text(context.l10n.absencesTableHeadName))),
+                  DataColumn(label: SizedBox(width: 50, child: Text(context.l10n.absencesTableHeadType))),
+                  DataColumn(label: SizedBox(width: 200, child: Text(context.l10n.absencesTableHeadPeriod))),
+                  DataColumn(label: SizedBox(width: 140, child: Text(context.l10n.absencesTableHeadMemberNote))),
+                  DataColumn(label: SizedBox(width: 50, child: Text(context.l10n.absencesTableHeadStatus))),
+                  DataColumn(label: SizedBox(width: 120, child: Text(context.l10n.absencesTableHeadAdmitterNote))),
+                ],
+                rows: state.absences
+                    .map<DataRow>(
+                      (absence) => DataRow(
+                        cells: <DataCell>[
+                          DataCell(Text(widget.users[absence.userId]?.name ?? 'id: ${absence.userId}')),
+                          DataCell(Text(absence.type.toString().split('.').last)),
+                          DataCell(
+                            Text(
+                              '${DateFormat('yyyy-MM-dd').format(absence.startDate)} - ${DateFormat('yyyy-MM-dd').format(absence.endDate)}',
+                            ),
                           ),
-                        ),
-                        DataCell(Text(absence.memberNote ?? 'N/A')),
-                        DataCell(Text(absence.status.toString().split('.').last)),
-                        DataCell(Text(absence.admitterNote ?? 'N/A')),
-                      ],
-                    ),
-                  )
-                  .toList(),
+                          DataCell(
+                            ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 220),
+                              child: Text(absence.memberNote ?? 'N/A'),
+                            ),
+                          ),
+                          DataCell(Text(absence.status.toString().split('.').last)),
+                          DataCell(
+                            ConstrainedBox(
+                              constraints: const BoxConstraints(maxWidth: 220),
+                              child: Text(absence.admitterNote ?? 'N/A'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                    .toList(),
+              ),
             ),
           ),
         ),

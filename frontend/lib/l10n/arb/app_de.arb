@@ -5,7 +5,7 @@
     "absencesTableFiltersDate": "Filtern nach Datum",
     "absencesTableFiltersType": "Filtern nach Art",
     "absencesTableFiltersClear": "Filter löschen",
-    "absencesTableFiltersICal": "Exportieren nach iCal",
+    "absencesTableFiltersICal": "iCal export",
     "absencesTableHeadName": "Name",
     "absencesTableHeadType": "Art",
     "absencesTableHeadPeriod": "Zeitraum",

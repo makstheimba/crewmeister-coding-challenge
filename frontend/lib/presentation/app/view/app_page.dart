@@ -60,6 +60,7 @@ class __AppViewState extends State<_AppView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: Text(context.l10n.appTitle),
         leadingWidth: 100,
