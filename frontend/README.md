@@ -23,6 +23,13 @@ $ genhtml coverage/lcov.info -o coverage/
 $ open coverage/index.html
 ```
 
+## Deployment to GitHub pages
+- `git checkout gh-pages`
+- `cd frontend/ && flutter build web --target lib/main_production.dart`
+- `cd ../ && cp -r frontend/build/web/* docs/`
+- go to `docs/index.html` and change line `<base href="/">` to include repo name `<base href="/crewmeister-coding-challenge/">`
+- `git add . && - git commit -m "Deploy Flutter web app" && git push`
+
 ## Project structure
 ### Frontend:
 - [Very Good CLI](https://pub.dev/packages/very_good_cli) is used to create flutter project template
