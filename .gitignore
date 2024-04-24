@@ -15,6 +15,7 @@ pubspec.lock
 *.js_
 *.js.deps
 *.js.map
+!docs/*
 
 .flutter-plugins
 .flutter-plugins-dependencies
