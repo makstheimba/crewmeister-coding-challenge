@@ -8,8 +8,19 @@ import 'package:frontend/presentation/absences/view/absences_page.dart';
 import 'package:frontend/presentation/app/cubit/app_cubit.dart';
 import 'package:frontend/presentation/app/cubit/app_state.dart';
 
-class AppPage extends StatelessWidget {
+class AppPage extends StatefulWidget {
   const AppPage({super.key});
+
+  @override
+  State<AppPage> createState() => _AppPageState();
+}
+
+class _AppPageState extends State<AppPage> {
+  Locale _locale = const Locale('en');
+
+  void setLocale(Locale locale) {
+    setState(() => _locale = locale);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,18 +33,18 @@ class AppPage extends StatelessWidget {
       ),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,
-      home: Scaffold(
-        body: BlocProvider(
-          create: (_) => AppCubit(UserApi(Dio())),
-          child: const _AppView(),
-        ),
+      locale: _locale,
+      home: BlocProvider(
+        create: (_) => AppCubit(UserApi(Dio())),
+        child: _AppView(locale: _locale),
       ),
     );
   }
 }
 
 class _AppView extends StatefulWidget {
-  const _AppView();
+  const _AppView({required this.locale});
+  final Locale locale;
 
   @override
   State<_AppView> createState() => __AppViewState();
@@ -48,22 +59,45 @@ class __AppViewState extends State<_AppView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<AppCubit, AppState>(
-      builder: (context, state) => state.when(
-        initial: Container.new,
-        loading: () => const Center(child: CircularProgressIndicator()),
-        loaded: (users) => AbsencesPage(users: users),
-        error: (_) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(context.l10n.appInitializationError),
-              const SizedBox(height: 16),
-              ElevatedButton(
-                onPressed: () => context.read<AppCubit>().initialize(),
-                child: Text(context.l10n.appInitializationRetry),
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(context.l10n.appTitle),
+        leadingWidth: 100,
+        leading: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: ['en', 'de']
+              .map(
+                (lang) => IconButton(
+                  icon: Text(
+                    lang,
+                    style: TextStyle(
+                      fontWeight: widget.locale == Locale(lang) ? FontWeight.bold : FontWeight.normal,
+                      color: widget.locale == Locale(lang) ? Colors.black : Colors.grey,
+                    ),
+                  ),
+                  onPressed: () => context.findAncestorStateOfType<_AppPageState>()?.setLocale(Locale(lang)),
+                ),
+              )
+              .toList(),
+        ),
+      ),
+      body: BlocBuilder<AppCubit, AppState>(
+        builder: (context, state) => state.when(
+          initial: Container.new,
+          loading: () => const Center(child: CircularProgressIndicator()),
+          loaded: (users) => AbsencesPage(users: users),
+          error: (_) => Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(context.l10n.appInitializationError),
+                const SizedBox(height: 16),
+                ElevatedButton(
+                  onPressed: () => context.read<AppCubit>().initialize(),
+                  child: Text(context.l10n.appInitializationRetry),
+                ),
+              ],
+            ),
           ),
         ),
       ),

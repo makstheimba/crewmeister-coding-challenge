@@ -1,6 +1,7 @@
 import 'dart:collection';
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:frontend/data/api/absences_api.dart';
 import 'package:frontend/domain/models/absences.dart';
@@ -68,7 +69,9 @@ class AbsencesCubit extends Cubit<AbsencesState> {
         ),
       );
     } catch (e) {
-      print('[AbsencesCubit]: error fetching absences ${e.toString()}');
+      if (kDebugMode) {
+        print('[AbsencesCubit]: error fetching absences $e');
+      }
       emit(state.copyWith(isLoading: false, errorMessage: e.toString()));
     }
   }

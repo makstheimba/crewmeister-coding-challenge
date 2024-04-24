@@ -28,7 +28,8 @@ class AbsencesTableFilters extends StatelessWidget {
         return Row(
           children: <Widget>[
             Expanded(
-              child: Row(
+              child: Wrap(
+                crossAxisAlignment: WrapCrossAlignment.center,
                 children: [
                   ElevatedButton(
                     onPressed: () async {

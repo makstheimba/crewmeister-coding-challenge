@@ -1,6 +1,7 @@
 {
     "@@locale": "en",
-    "absencesTableTitle": "Absences",
+    "appTitle": "Absences",
+    
     "absencesTableFiltersDate": "Filter by Date",
     "absencesTableFiltersType": "Filter by Type",
     "absencesTableFiltersClear": "Clear Filters",

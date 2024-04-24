@@ -1,0 +1,21 @@
+{
+    "@@locale": "de",
+    "appTitle": "Abwesenheiten",
+    
+    "absencesTableFiltersDate": "Filtern nach Datum",
+    "absencesTableFiltersType": "Filtern nach Art",
+    "absencesTableFiltersClear": "Filter löschen",
+    "absencesTableFiltersICal": "Exportieren nach iCal",
+    "absencesTableHeadName": "Name",
+    "absencesTableHeadType": "Art",
+    "absencesTableHeadPeriod": "Zeitraum",
+    "absencesTableHeadMemberNote": "Mitglied Notiz",
+    "absencesTableHeadStatus": "Status",
+    "absencesTableHeadAdmitterNote": "Zulasser Notiz",
+    "absencesTableShowMore": "Mehr anzeigen",
+    "absencesTableTryAgain": "Erneut versuchen",
+    "absencesTableErrorText": "Beim Laden der Abwesenheiten ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+
+    "appInitializationError": "Beim Initialisieren der App ist ein Fehler aufgetreten. Bitte versuchen Sie es später erneut.",
+    "appInitializationRetry": "Wiederholen"
+}

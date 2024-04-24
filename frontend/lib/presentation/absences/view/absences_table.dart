@@ -45,29 +45,26 @@ class _AbsencesTableState extends State<AbsencesTable> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(context.l10n.absencesTableTitle)),
-      body: Center(
-        child: ConstrainedBox(
-          constraints: const BoxConstraints(maxWidth: 1000),
-          child: BlocBuilder<AbsencesCubit, AbsencesState>(
-            builder: (context, state) {
-              return Column(
-                children: [
-                  Container(
-                    padding: const EdgeInsets.all(8),
-                    child: AbsencesTableFilters(
-                      onExportToICal: () => context.read<AbsencesCubit>().exportToICal(widget.users),
-                      onFilterDateChanged: (date) => _loadAbsences(date: date, type: state.filterType),
-                      onFilterTypeChanged: (type) => _loadAbsences(date: state.filterDate, type: type),
-                      onClearFilters: _loadAbsences,
-                    ),
+    return Center(
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxWidth: 1000),
+        child: BlocBuilder<AbsencesCubit, AbsencesState>(
+          builder: (context, state) {
+            return Column(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(8),
+                  child: AbsencesTableFilters(
+                    onExportToICal: () => context.read<AbsencesCubit>().exportToICal(widget.users),
+                    onFilterDateChanged: (date) => _loadAbsences(date: date, type: state.filterType),
+                    onFilterTypeChanged: (type) => _loadAbsences(date: state.filterDate, type: type),
+                    onClearFilters: _loadAbsences,
                   ),
-                  Expanded(child: _buildAbsencesTable(context, state)),
-                ],
-              );
-            },
-          ),
+                ),
+                Expanded(child: _buildAbsencesTable(context, state)),
+              ],
+            );
+          },
         ),
       ),
     );
