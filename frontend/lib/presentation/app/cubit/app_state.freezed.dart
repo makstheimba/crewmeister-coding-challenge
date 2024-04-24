@@ -20,7 +20,7 @@ mixin _$AppState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(HashMap<int, UserModel> users) loaded,
+    required TResult Function(HashMap<int, User> users) loaded,
     required TResult Function(String message) error,
   }) =>
       throw _privateConstructorUsedError;
@@ -28,7 +28,7 @@ mixin _$AppState {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(HashMap<int, UserModel> users)? loaded,
+    TResult? Function(HashMap<int, User> users)? loaded,
     TResult? Function(String message)? error,
   }) =>
       throw _privateConstructorUsedError;
@@ -36,7 +36,7 @@ mixin _$AppState {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(HashMap<int, UserModel> users)? loaded,
+    TResult Function(HashMap<int, User> users)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) =>
@@ -125,7 +125,7 @@ class _$InitialImpl implements _Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(HashMap<int, UserModel> users) loaded,
+    required TResult Function(HashMap<int, User> users) loaded,
     required TResult Function(String message) error,
   }) {
     return initial();
@@ -136,7 +136,7 @@ class _$InitialImpl implements _Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(HashMap<int, UserModel> users)? loaded,
+    TResult? Function(HashMap<int, User> users)? loaded,
     TResult? Function(String message)? error,
   }) {
     return initial?.call();
@@ -147,7 +147,7 @@ class _$InitialImpl implements _Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(HashMap<int, UserModel> users)? loaded,
+    TResult Function(HashMap<int, User> users)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -239,7 +239,7 @@ class _$LoadingImpl implements _Loading {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(HashMap<int, UserModel> users) loaded,
+    required TResult Function(HashMap<int, User> users) loaded,
     required TResult Function(String message) error,
   }) {
     return loading();
@@ -250,7 +250,7 @@ class _$LoadingImpl implements _Loading {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(HashMap<int, UserModel> users)? loaded,
+    TResult? Function(HashMap<int, User> users)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loading?.call();
@@ -261,7 +261,7 @@ class _$LoadingImpl implements _Loading {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(HashMap<int, UserModel> users)? loaded,
+    TResult Function(HashMap<int, User> users)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -319,7 +319,7 @@ abstract class _$$LoadedImplCopyWith<$Res> {
           _$LoadedImpl value, $Res Function(_$LoadedImpl) then) =
       __$$LoadedImplCopyWithImpl<$Res>;
   @useResult
-  $Res call({HashMap<int, UserModel> users});
+  $Res call({HashMap<int, User> users});
 }
 
 /// @nodoc
@@ -339,7 +339,7 @@ class __$$LoadedImplCopyWithImpl<$Res>
       users: null == users
           ? _value.users
           : users // ignore: cast_nullable_to_non_nullable
-              as HashMap<int, UserModel>,
+              as HashMap<int, User>,
     ));
   }
 }
@@ -350,7 +350,7 @@ class _$LoadedImpl implements _Loaded {
   const _$LoadedImpl({required this.users});
 
   @override
-  final HashMap<int, UserModel> users;
+  final HashMap<int, User> users;
 
   @override
   String toString() {
@@ -380,7 +380,7 @@ class _$LoadedImpl implements _Loaded {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(HashMap<int, UserModel> users) loaded,
+    required TResult Function(HashMap<int, User> users) loaded,
     required TResult Function(String message) error,
   }) {
     return loaded(users);
@@ -391,7 +391,7 @@ class _$LoadedImpl implements _Loaded {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(HashMap<int, UserModel> users)? loaded,
+    TResult? Function(HashMap<int, User> users)? loaded,
     TResult? Function(String message)? error,
   }) {
     return loaded?.call(users);
@@ -402,7 +402,7 @@ class _$LoadedImpl implements _Loaded {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(HashMap<int, UserModel> users)? loaded,
+    TResult Function(HashMap<int, User> users)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {
@@ -451,10 +451,10 @@ class _$LoadedImpl implements _Loaded {
 }
 
 abstract class _Loaded implements AppState {
-  const factory _Loaded({required final HashMap<int, UserModel> users}) =
+  const factory _Loaded({required final HashMap<int, User> users}) =
       _$LoadedImpl;
 
-  HashMap<int, UserModel> get users;
+  HashMap<int, User> get users;
   @JsonKey(ignore: true)
   _$$LoadedImplCopyWith<_$LoadedImpl> get copyWith =>
       throw _privateConstructorUsedError;
@@ -526,7 +526,7 @@ class _$ErrorImpl implements _Error {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function() loading,
-    required TResult Function(HashMap<int, UserModel> users) loaded,
+    required TResult Function(HashMap<int, User> users) loaded,
     required TResult Function(String message) error,
   }) {
     return error(message);
@@ -537,7 +537,7 @@ class _$ErrorImpl implements _Error {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
     TResult? Function()? loading,
-    TResult? Function(HashMap<int, UserModel> users)? loaded,
+    TResult? Function(HashMap<int, User> users)? loaded,
     TResult? Function(String message)? error,
   }) {
     return error?.call(message);
@@ -548,7 +548,7 @@ class _$ErrorImpl implements _Error {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function()? loading,
-    TResult Function(HashMap<int, UserModel> users)? loaded,
+    TResult Function(HashMap<int, User> users)? loaded,
     TResult Function(String message)? error,
     required TResult orElse(),
   }) {

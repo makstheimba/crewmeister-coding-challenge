@@ -14,7 +14,7 @@ class AbsencesCubit extends Cubit<AbsencesState> {
   AbsencesCubit(this._api) : super(const AbsencesState());
   final AbsencesApi _api;
 
-  void exportToICal(HashMap<int, UserModel> users) {
+  void exportToICal(HashMap<int, User> users) {
     final iCalComponents = [
       'BEGIN:VCALENDAR',
       'VERSION:2.0',

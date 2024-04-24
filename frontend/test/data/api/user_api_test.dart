@@ -32,6 +32,6 @@ void main() {
 
     final response = await userApi.getUsers();
 
-    expect(response.payload, isA<List<UserModel>>());
+    expect(response.payload, isA<List<User>>());
   });
 }

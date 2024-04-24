@@ -12,18 +12,18 @@ import 'package:frontend/presentation/absences/view/absences_table.dart';
 import 'package:frontend/presentation/absences/view/absences_table_filters.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../helpers/helpers.dart';
+import '../../../helpers/pump_app.dart';
 
 class MockAbsencesCubit extends MockCubit<AbsencesState> implements AbsencesCubit {}
 
 void main() {
   group('AbsencesTable', () {
     late AbsencesCubit absencesCubit;
-    final users = HashMap<int, UserModel>();
+    final users = HashMap<int, User>();
 
     setUp(() {
       absencesCubit = MockAbsencesCubit();
-      users[0] = const UserModel(id: 0, name: 'John Doe', image: 'url', userId: 0, crewId: 0);
+      users[0] = const User(id: 0, name: 'John Doe', image: 'url', userId: 0, crewId: 0);
     });
 
     testWidgets('renders AbsencesTable', (tester) async {

@@ -21,13 +21,13 @@ class _UserApi implements UserApi {
   String? baseUrl;
 
   @override
-  Future<ApiResponse<List<UserModel>>> getUsers() async {
+  Future<ApiResponse<List<User>>> getUsers() async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     const Map<String, dynamic>? _data = null;
     final _result = await _dio.fetch<Map<String, dynamic>>(
-        _setStreamType<ApiResponse<List<UserModel>>>(Options(
+        _setStreamType<ApiResponse<List<User>>>(Options(
       method: 'GET',
       headers: _headers,
       extra: _extra,
@@ -43,12 +43,11 @@ class _UserApi implements UserApi {
               _dio.options.baseUrl,
               baseUrl,
             ))));
-    final value = ApiResponse<List<UserModel>>.fromJson(
+    final value = ApiResponse<List<User>>.fromJson(
       _result.data!,
       (json) => json is List<dynamic>
           ? json
-              .map<UserModel>(
-                  (i) => UserModel.fromJson(i as Map<String, dynamic>))
+              .map<User>((i) => User.fromJson(i as Map<String, dynamic>))
               .toList()
           : List.empty(),
     );

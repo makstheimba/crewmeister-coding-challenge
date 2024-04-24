@@ -33,7 +33,7 @@ void main() {
       act: (cubit) {
         when(() => mockUserApi.getUsers()).thenAnswer(
           (_) async => ApiResponse(
-            payload: [const UserModel(id: 1, name: 'John Doe', image: 'url', userId: 1, crewId: 1)],
+            payload: [const User(id: 1, name: 'John Doe', image: 'url', userId: 1, crewId: 1)],
             message: '',
           ),
         );

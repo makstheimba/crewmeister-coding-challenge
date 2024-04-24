@@ -14,7 +14,7 @@ class AppCubit extends Cubit<AppState> {
     emit(const AppState.loading());
     try {
       final response = await _userApi.getUsers();
-      final usersMap = HashMap<int, UserModel>();
+      final usersMap = HashMap<int, User>();
 
       for (final user in response.payload) {
         usersMap[user.userId] = user;

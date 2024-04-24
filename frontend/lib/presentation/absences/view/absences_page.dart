@@ -12,7 +12,7 @@ import 'package:frontend/presentation/absences/view/absences_table.dart';
 
 class AbsencesPage extends StatelessWidget {
   const AbsencesPage({required this.users, super.key});
-  final HashMap<int, UserModel> users;
+  final HashMap<int, User> users;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +22,7 @@ class AbsencesPage extends StatelessWidget {
 
 class _AbsencesView extends StatefulWidget {
   const _AbsencesView({required this.users});
-  final HashMap<int, UserModel> users;
+  final HashMap<int, User> users;
 
   @override
   State<_AbsencesView> createState() => __AbsencesViewState();

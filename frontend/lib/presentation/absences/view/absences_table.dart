@@ -13,7 +13,7 @@ import 'package:intl/intl.dart';
 
 class AbsencesTable extends StatefulWidget {
   const AbsencesTable({required this.users, super.key});
-  final HashMap<int, UserModel> users;
+  final HashMap<int, User> users;
 
   @override
   State<AbsencesTable> createState() => _AbsencesTableState();

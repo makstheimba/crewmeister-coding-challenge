@@ -10,5 +10,5 @@ abstract class UserApi {
   factory UserApi(Dio dio) = _UserApi;
 
   @GET('/users')
-  Future<ApiResponse<List<UserModel>>> getUsers();
+  Future<ApiResponse<List<User>>> getUsers();
 }

@@ -4,7 +4,7 @@ import 'package:frontend/domain/models/absences.dart';
 import 'package:frontend/presentation/absences/view/absences_table_filters.dart';
 import 'package:mocktail/mocktail.dart';
 
-import '../../../helpers/helpers.dart';
+import '../../../helpers/pump_app.dart';
 import '../../../mocks/function_mock.dart';
 
 void main() {
